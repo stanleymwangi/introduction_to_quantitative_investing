@@ -14,4 +14,4 @@ six_month_return<-round(((SP500[1,5] - SP500[7,5]) / SP500[7,5]) * 100, 2)
 one_year_return<-round(((SP500[1,5] - SP500[13,5]) / SP500[13,5]) * 100, 2)
 
 # 25 year horizon: Dec 31st 1990 - December 31st 2015
-#twenty_five_year_return<-round(((SP500[1,5] - SP500[301,5]) / SP500[301,5]) * 100, 2)
+twenty_five_year_return<-round(((SP500[1,5] - SP500[301,5]) / SP500[301,5]) * 100, 2)
