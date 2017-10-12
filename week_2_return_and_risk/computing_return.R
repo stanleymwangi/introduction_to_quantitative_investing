@@ -35,3 +35,21 @@ cost<-price[2:length(price)]
 
 # Calculate monthly holding return
 monthly_return<-round(((gain - cost) / cost) * 100, 2)
+
+# Can use historical holding returns to work out future expected returns
+# Example of expecations (for 1 year):
+#    Status | Probability of status | Expected return in status
+# Excellent (s_1) |            0.3        |           20%
+# Good      (s_2) |            0.2        |           10%
+# Poor      (s_3) |            0.4        |           -5%
+# Terrible  (s_4) |            0.1        |           -40%
+
+probability_status<-c(0.3, 0.2, 0.4, 0.1)
+expected_return_status<-c(0.2, 0.1, -0.05, -0.4)
+
+# Expected return = sum over all scenarions (probability of status * expected return in status)
+expected_return<-round((sum(probability_status * expected_return_status) * 100), 2)
+
+# Monthly expected return (using 1/12 to get one month return from a 1 year expected return)
+monthly_expected_return<-round((((1 + expected_return/100) ** (1/12) - 1) * 100), 2)
+
