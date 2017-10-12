@@ -18,7 +18,10 @@ twenty_five_year_return<-round(((SP500[1,5] - SP500[301,5]) / SP500[301,5]) * 10
 # Calculating annualised return so that we can compare returns across varying holding periods by standardising to 1 year
 # dividing by return by 100 to undo earlier percentage transformation
 # 1/0.5 as six months is half a year, 1/0.25 or 12 / (3/12) would be for a quarter, etc
-six_month_return_annualised<-((1+six_month_return/100) ** (1/0.5)) - 1 
+six_month_return_annualised<-((1+six_month_return/100) ** (1/0.5) - 1) * 100
+
+# 1/25 part is akin to 1/(25/1) i.e. 25 lots of a standard year
+twenty_five_year_return_annualised<-((1 + twenty_five_year_return/100) ** (1/25) - 1) * 100
 
 # Calculating monthly holding returns across all months
 # Get the closing price for all years
