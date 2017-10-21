@@ -53,3 +53,10 @@ expected_return <- round((sum(probability_status * expected_return_status) * 100
 # Monthly expected return (using 1/12 to get one month return from a 1 year expected return)
 monthly_expected_return <- round((((1 + expected_return/100) ** (1/12) - 1) * 100), 2)
 
+# Calculating risk of investments
+# Risk measures the uncertainty of achieving returns, typically standard return is used
+
+# Standard deviation calculation
+#  (Sum (Prob expec return * ((Expected return in status - expected return) ** 2))) ** (1/2)
+
+
