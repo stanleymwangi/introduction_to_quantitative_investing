@@ -7,21 +7,21 @@ SP500 <- read.csv(file="./week_1_intro_to_quantitative_investing/SP500_data.csv"
 # Return = (gain of investment - cost of investment) / cost of investment
 
 # 6 month horizon: June 30th 2015 - December 31st 2015 
-six_month_return <- round(((SP500[1,5] - SP500[7,5]) / SP500[7,5]) * 100, 2)
+six_month_return <- (SP500[1,5] - SP500[7,5]) / SP500[7,5]
 
 # 1 year horizon: Dec 31st 2014 - December 31st 2015 
-one_year_return <- round(((SP500[1,5] - SP500[13,5]) / SP500[13,5]) * 100, 2)
+one_year_return <- (SP500[1,5] - SP500[13,5]) / SP500[13,5]
 
 # 25 year horizon: Dec 31st 1990 - December 31st 2015
-twenty_five_year_return <- round(((SP500[1,5] - SP500[301,5]) / SP500[301,5]) * 100, 2)
+twenty_five_year_return <- (SP500[1,5] - SP500[301,5]) / SP500[301,5]
 
 # Calculate annualised return so that we can compare returns across varying holding periods by standardising to 1 year
 # Divide by return by 100 to undo earlier percentage transformation
 # 1/0.5 as six months is half a year, 1/0.25 or 12 / (3/12) would be for a quarter, etc
-six_month_return_annualised <- round((((1+six_month_return/100) ** (1/0.5) - 1) * 100), 2)
+six_month_return_annualised <- (1+six_month_return) ** (1/0.5) - 1
 
 # 1/25 part is akin to 1/(25/1) i.e. 25 lots of a standard year
-twenty_five_year_return_annualised <- round((((1 + twenty_five_year_return/100) ** (1/25) - 1) * 100), 2)
+twenty_five_year_return_annualised <- (1 + twenty_five_year_return) ** (1/25) - 1
 
 # Calculating monthly holding returns across all months
 # Get the closing price for all years
@@ -34,7 +34,7 @@ gain <- price[1:(length(price)-1)]
 cost <- price[2:length(price)]
 
 # Calculate monthly holding return
-monthly_return <- round(((gain - cost) / cost) * 100, 2)
+monthly_return <- (gain - cost) / cost
 
 # Can use historical holding returns to work out future expected returns
 # Example of expecations (for 1 year):
@@ -48,15 +48,13 @@ probability_status <- c(0.3, 0.2, 0.4, 0.1)
 expected_return_status <- c(0.2, 0.1, -0.05, -0.4)
 
 # Expected return = sum over all scenarions (probability of status * expected return in status)
-expected_return <- round((sum(probability_status * expected_return_status) * 100), 2)
+expected_return <- sum(probability_status * expected_return_status)
 
 # Monthly expected return (using 1/12 to get one month return from a 1 year expected return)
-monthly_expected_return <- round((((1 + expected_return/100) ** (1/12) - 1) * 100), 2)
+monthly_expected_return <- (1 + expected_return) ** (1/12) - 1
 
 # Calculating risk of investments
 # Risk measures the uncertainty of achieving returns, typically standard return is used
 
 # Standard deviation calculation
 #  (Sum (Prob expec return * ((Expected return in status - expected return) ** 2))) ** (1/2)
-
-
